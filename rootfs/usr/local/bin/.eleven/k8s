@@ -1,4 +1,6 @@
 #!/bin/sh
+  set -euo pipefail
+
   FN=$(echo "${1}" | tr '[:upper:]' '[:lower:]')
   shift
 
