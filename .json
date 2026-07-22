@@ -8,6 +8,6 @@
   },
   "readme": {
     "description": "Your perfect side car image to prepare everything for your k8s pods.",
-    "introduction": "k8s-init Home is a network-wide software for blocking ads and tracking. After you set it up, it'll cover all your home devices, and you won't need any client-side software for that."
+    "introduction": "Tired of writing your own scripts to make sure the permissions are set correctly on your PVCs or that damn database is up before your app is? Worry not, simply use this image and it’s many functions to ease your pain and make your life simpler."
   }
 }
