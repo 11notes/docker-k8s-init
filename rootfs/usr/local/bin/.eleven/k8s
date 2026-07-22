@@ -7,7 +7,7 @@
       TARGET_UID=${2}
       TARGET_GID=${3}
 
-      for VOLUME in /${1}/*/; do
+      for VOLUME in ${1%/}/*/; do
         VOLUME=${VOLUME%/}
         [ -d "${VOLUME}" ] || continue
         CURRENT_UID=$(stat -c '%u' "${VOLUME}")
