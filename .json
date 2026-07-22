@@ -1,0 +1,13 @@
+{
+  "image": "11notes/k8s-init",
+  "name": "k8s-init",
+  "root": "/",
+  "semver": {
+    "version": "0.0.1",
+    "latest": "0.0.1"
+  },
+  "readme": {
+    "description": "Your perfect side car image to prepare everything for your k8s pods.",
+    "introduction": "k8s-init Home is a network-wide software for blocking ads and tracking. After you set it up, it'll cover all your home devices, and you won't need any client-side software for that."
+  }
+}
