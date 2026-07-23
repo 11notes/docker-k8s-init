@@ -9,8 +9,11 @@
       TARGET_UID=${2}
       TARGET_GID=${3}
 
+      ls -lah ${1}
+
       for VOLUME in ${1%/}/*/; do
         VOLUME=${VOLUME%/}
+        eleven log info "trying to execute chown on PVC volume ${VOLUME}"
         [ -d "${VOLUME}" ] || continue
         CURRENT_UID=$(stat -c '%u' "${VOLUME}")
         CURRENT_GID=$(stat -c '%g' "${VOLUME}")
