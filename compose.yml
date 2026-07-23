@@ -1,8 +1,0 @@
-name: "k8s"
-services:
-  init:
-    image: "11notes/k8s-init"
-    command:
-      - |
-        eleven k8s help
-        eleven k8s wait postgres localhost
