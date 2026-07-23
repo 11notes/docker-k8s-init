@@ -69,4 +69,4 @@ docker pull quay.io/11notes/k8s-init:0.0.1
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-k8s-init/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-k8s-init/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-k8s-init/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 23.07.2026, 01:01:49 (CET)*
+*created 23.07.2026, 01:06:16 (CET)*
