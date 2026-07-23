@@ -58,4 +58,3 @@
 
 # :: EXECUTE
   USER 0:0
-  ENTRYPOINT ["/bin/sh", "-c"]
