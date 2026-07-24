@@ -12,18 +12,29 @@ Tired of writing your own scripts to make sure the permissions are set correctly
 # SYNOPSIS 📖
 **What can I do with this?** This image will provide you with some helper functions to prepare your container images on k8s, like setting correct permissions on PVCs or waiting for a database to be up before starting the app.
 
-# COMPOSE ✂️
+# HELM DEPLOYMENT ✂️
 ```yaml
-name: "k8s"
-services:
-  init:
-    image: "11notes/k8s-init"
-    command:
-      - |
-        eleven k8s help
-        eleven k8s wait postgres localhost
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: chown
+          image: "11notes/k8s-init"
+          command:
+            - sh
+            - -c
+            - |
+              eleven k8s chown /postgres {{ .Values.containerSecurityContext.runAsUser | default 1000 }} {{ .Values.containerSecurityContext.runAsGroup | default 1000 }}
+          volumeMounts:
+            - name: etc
+              mountPath: /postgres/etc
+            - name: var
+              mountPath: /postgres/var
+          securityContext:
+            runAsUser: 0
 ```
-To find out how you can change the default UID/GID of this container image, consult the [RTFM](https://github.com/11notes/RTFM/blob/main/linux/container/image/11notes/how-to.changeUIDGID.md#change-uidgid-the-correct-way).
 
 # DEFAULT SETTINGS 🗃️
 | Parameter | Value | Description |
@@ -69,4 +80,4 @@ docker pull quay.io/11notes/k8s-init:0.0.1
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-k8s-init/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-k8s-init/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-k8s-init/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 23.07.2026, 09:20:04 (CET)*
+*created 23.07.2026, 09:36:01 (CET)*
