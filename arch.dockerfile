@@ -5,6 +5,7 @@
   FROM 11notes/util AS util
   FROM 11notes/distroless:dnslookup AS distroless-dnslookup
   FROM 11notes/distroless:curl AS distroless-curl
+  FROM 11notes/redis:8 AS distroless-redis
 
 
 # ╔═════════════════════════════════════════════════════╗
@@ -55,6 +56,7 @@
   # :: multi-stage
     COPY --from=build / /
     COPY --from=distroless-curl / /
+    COPY --from=distroless-redis /usr/local/bin/redis-cli /usr/local/bin/redis-cli
 
 # :: EXECUTE
   USER 0:0

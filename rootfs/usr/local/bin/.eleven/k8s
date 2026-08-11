@@ -36,11 +36,29 @@
       shift
       case "${WHAT}" in
         "postgres")
+          # eleven k8s wait postgres 127.0.0.1 5432 postgres 60
           PORT="${2:-5432}"
           USER="${3:-postgres}"
           TIMEOUT="${4:-60}"
           START=$(date +%s)
           until pg_isready -h ${1} -p ${PORT} -U ${USER}; do
+            NOW=$(date +%s)
+            ELAPSED=$((NOW - START))
+            if [ "${ELAPSED}" -ge "${TIMEOUT}" ]; then
+              eleven log error "timed out after ${TIMEOUT}s waiting for ${1}:${PORT} to be ready!"
+              exit 1
+            fi
+            eleven log info "waiting for ${1}:${PORT} to be ready..."
+            sleep 2
+          done
+        ;;
+
+        "redis")
+          # eleven k8s wait redis 127.0.0.1 6379 password 60
+          PORT="${2:-6379}"
+          TIMEOUT="${4:-60}"
+          START=$(date +%s)
+          until REDISCLI_AUTH=${3} /usr/local/bin/redis-cli -h ${1} -p ${PORT} PING; do
             NOW=$(date +%s)
             ELAPSED=$((NOW - START))
             if [ "${ELAPSED}" -ge "${TIMEOUT}" ]; then
