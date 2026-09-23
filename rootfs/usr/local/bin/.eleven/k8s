@@ -9,8 +9,6 @@
       TARGET_UID=${2}
       TARGET_GID=${3}
 
-      ls -lah ${1}
-
       for VOLUME in ${1%/}/*/; do
         VOLUME=${VOLUME%/}
         eleven log info "trying to execute chown on PVC volume ${VOLUME}"
@@ -22,11 +20,27 @@
         else
           eleven log info "fixing ${VOLUME}: $CURRENT_UID:$CURRENT_GID -> ${TARGET_UID}:${TARGET_GID}"
           chown -R ${TARGET_UID}:${TARGET_GID} ${VOLUME}
-          chmod 0750 -R ${VOLUME}
         fi
         if [ -d "${VOLUME}/lost+found" ]; then
           eleven log info "removing ${VOLUME}/lost+found"
           rm -rf "${VOLUME}/lost+found"
+        fi
+      done
+    ;;
+
+    "chmod")
+      TARGET_CHMOD=${2}
+
+      for VOLUME in ${1%/}/*/; do
+        VOLUME=${VOLUME%/}
+        eleven log info "trying to execute chmod on PVC volume ${VOLUME}"
+        [ -d "${VOLUME}" ] || continue
+        CURRENT_CHMOD=$(stat -c '%#a' "${VOLUME}")
+        if [ "$CURRENT_CHMOD" = "${TARGET_CHMOD}" ]; then
+          eleven log info "${VOLUME} already correct ($CURRENT_CHMOD), skipping"
+        else
+          eleven log info "fixing ${VOLUME}: $CURRENT_CHMOD -> ${TARGET_CHMOD}"
+          chmod ${TARGET_CHMOD} -R ${VOLUME}
         fi
       done
     ;;
