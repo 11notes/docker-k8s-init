@@ -53,14 +53,14 @@ spec:
 # MAIN TAGS 🏷️
 These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
 
-* [0.0.1](https://hub.docker.com/r/11notes/k8s-init/tags?name=0.0.1)
+* [0.0.2](https://hub.docker.com/r/11notes/k8s-init/tags?name=0.0.2)
 * [latest](https://hub.docker.com/r/11notes/k8s-init/tags?name=latest)
 
 # REGISTRIES ☁️
 ```
-docker pull 11notes/k8s-init:0.0.1
-docker pull ghcr.io/11notes/k8s-init:0.0.1
-docker pull quay.io/11notes/k8s-init:0.0.1
+docker pull 11notes/k8s-init:0.0.2
+docker pull ghcr.io/11notes/k8s-init:0.0.2
+docker pull quay.io/11notes/k8s-init:0.0.2
 ```
 
 # SOURCE 💾
@@ -80,4 +80,4 @@ docker pull quay.io/11notes/k8s-init:0.0.1
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-k8s-init/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-k8s-init/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-k8s-init/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 11.08.2026, 07:01:08 (CET)*
+*created 24.09.2026, 00:50:20 (CET)*
