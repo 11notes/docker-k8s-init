@@ -3,8 +3,8 @@
   "name": "k8s-init",
   "root": "/",
   "semver": {
-    "version": "0.0.1",
-    "latest": "0.0.1"
+    "version": "0.0.2",
+    "latest": "0.0.2"
   },
   "readme": {
     "description": "Your perfect side car image to prepare everything for your k8s pods.",
